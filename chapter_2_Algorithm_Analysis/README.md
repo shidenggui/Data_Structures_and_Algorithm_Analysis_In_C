@@ -222,7 +222,7 @@ int max_subsequence_sum(int *arr, int length) {
 ```
 
 
-明显分治法需要多的多的代码，但是作者也加了一句评注 "shorter code does not always mean better code"(不过后面的算法又推翻了这个结论，看来长的代码不一定比短的代码差，但能好多少也值得商榷)
+明显分治法需要多的多的代码，但是作者也加了一句评注 "shorter code does not always mean better code"(不过后面的算法又推翻了这个结论，看来长的代码不一定比短的代码差，但能好多少也值得商榷)。
 
 
 对该算法的分析如下:
@@ -232,7 +232,7 @@ T(1) = 1 // base cases
 T(N) = 2T(N/2) + O(N)
 ```
 
-这里作者说具体的分析被推迟到第七章(这种证明方法不经让人想到 proof by intimidation)，他代入了几个值，然后表示这个算法大概近似 `O(N logN)。
+这里作者说具体的分析被推迟到第七章(这种证明方法不经让人想到 proof by intimidation)，他代入了几个值，然后表示这个算法大概近似 O(N logN)。
 
 ### 还有吗？
 
