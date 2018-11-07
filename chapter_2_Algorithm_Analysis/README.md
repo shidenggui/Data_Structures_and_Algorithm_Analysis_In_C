@@ -307,13 +307,13 @@ int max_subsequence_sum(int *arr, int length) {
 An algorithm is O(LogN) if it takes constans O(1) time to cut the problem size by fraction(which is usually 1/2). On the other hand, if constant time is required to merely reduce the problem by a constant amount, then the algorihtm is O(N).
 
 
-简单来说，就是如果一个算法在其运算过程中，只需要花费常量的 O(1) 时间将问题减少为原问题的一部分(通常是 1/2)，而不是只减少常量的数量，则这个算法是 O(N) 的，因为问题再按指数级缩小。
+简单来说，就是如果一个算法在其运算过程中，只需要花费常量的 O(1) 时间将问题减少为原问题的一部分(通常是 1/2)，而不是只减少常量的数量，则这个算法是 O(LogN) 的，因为问题再按指数级缩小，而指数函数的反函数就是 Logarithm。
 
 
 反之，如果在运算过程中需要常量的时间而仅仅只能将问题减少常量的一部分，则该算法是 O(N) 的。
 
 
-而且作者这里排除了读取数据的所花的时间，因为不管怎么样，读取 N 份数据都需要 O(N) 的时间。
+而且作者这里排除了读取数据所花的时间，因为不管怎么样，读取 N 份数据都需要 O(N) 的时间。
 
 
 这样想的话其实 O(LogN) 的算法是很少的，一般我只能想到 binary search, 而作者在后文中除此之外又介绍了另外两种算法，令人大开眼界。
