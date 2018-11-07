@@ -297,3 +297,90 @@ int max_subsequence_sum(int *arr, int length) {
 
 对某个问题的 "on-line" 算法解就算不是最好，也是最好的几种算法解之一了。
 
+
+## 2.4.4  Logarithms in the Running Time
+
+主要介绍了几种算法复杂度为 O(LogN) 的算法。
+
+### 如何判断一个算法是 O(N) 还是 O(LogN) ?
+
+An algorithm is O(LogN) if it takes constans O(1) time to cut the problem size by fraction(which is usually 1/2). On the other hand, if constant time is required to merely reduce the problem by a constant amount, then the algorihtm is O(N).
+
+
+简单来说，就是如果一个算法在其运算过程中，只需要花费常量的 O(1) 时间将问题减少为原问题的一部分(通常是 1/2)，而不是只减少常量的数量，则这个算法是 O(N) 的，因为问题再按指数级缩小。
+
+
+反之，如果在运算过程中需要常量的时间而仅仅只能将问题减少常量的一部分，则该算法是 O(N) 的。
+
+
+而且作者这里排除了读取数据的所花的时间，因为不管怎么样，读取 N 份数据都需要 O(N) 的时间。
+
+
+这样想的话其实 O(LogN) 的算法是很少的，一般我只能想到 binary search, 而作者在后文中除此之外又介绍了另外两种算法，令人大开眼界。
+
+
+#### O(LogN) 算法之一: binary search
+
+
+这个算法应该不用多说了，每次判断都可以减少 1 / 2 的检索量。
+
+代码实现如下:
+
+```c
+int binary_search(int *arr, int n , int k) {
+    int center; // 预先声明变量，防止在循环中不断创建影响性能
+    int left = 0;
+    int right = n - 1;
+    while (left <= right) {
+        center = left + (right - left) / 2; // 防止溢出
+        if (arr[center] > k) {
+            right = center - 1;
+        } else if (arr[center] < k) {
+            left = center + 1;
+        } else { // == 判断放最后，因为这个遇到的频率最低
+            return center;
+        }
+    }
+    return -1;
+}
+```
+
+作者具了一个应用的例子，用于在元素周期表中检索对应的元素，这个例子有点牵强。
+
+
+#### O(LogN) 算法之二: Euclid's Algorithm
+
+
+又称之为碾转相除法，用于求解两个数的最大公约数。这个算法相信大家都学过，但是应该从来没人分析尝试过分析它的算法复杂度吧，而它也属于 O(LogN) 家族中的一员。
+
+
+代码实现如下:
+
+```c
+int GCD(int m, int n) {
+    int remainder; //预先声明所用变量，防止在循环中不断创建影响性能。
+    while (n > 0) {
+        remainder = m % n;
+        m = n;
+        n = remainder;
+    }
+    return m;
+}
+```
+
+证明过程:
+
+作者首先提出一条定理:
+
+```
+If M > N, then M mod N < M/2.
+```
+
+证明:
+
+* 当 N < M/2 时，因为 M mod N 一定小于 N，所以 M mod N < M/2
+* 当 N > M/2 时，因为 M > N 所以 M mod N = M - N < M/2
+
+这时我们可以知道 remainder 第一次至多为 m 的一半, 第二次至多为 n 的一半，后面则以最少 1/2 的速度递减。所以可以表明该算法的复杂度为 O(LogN)。
+
+
