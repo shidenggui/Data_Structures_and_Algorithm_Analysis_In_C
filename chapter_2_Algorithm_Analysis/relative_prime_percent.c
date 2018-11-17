@@ -6,7 +6,7 @@
 #include <math.h>
 
 // when m < n, algorithm will swap them in first iteration.
-int gcd(int m, int n) {
+unsigned int gcd(unsigned int m, unsigned int n) {
     int rem = 0;
     while (n > 0) {
         rem = m % n;
@@ -16,11 +16,11 @@ int gcd(int m, int n) {
     return m;
 }
 
-double relative_prime_percent(int n) {
+double relative_prime_percent(unsigned int n) {
     int total = n * n;
     int rel = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++)
+    for (unsigned int i = 1; i <= n; i++) {
+        for (unsigned int j = 1; j <= n; j++)
             if (gcd(i, j) == 1)
                 rel++;
     }
@@ -30,7 +30,7 @@ double relative_prime_percent(int n) {
 void test_relative_prime_percent() {
     int size = 100;
     for (int i = 1; i <= 64; i *= 2) {
-        int n = i * size;
+        unsigned int n = i * size;
         clock_t start = clock();
         double percent = relative_prime_percent(n);
         double use = (double)(clock() - start) * 1000000 / CLOCKS_PER_SEC;
