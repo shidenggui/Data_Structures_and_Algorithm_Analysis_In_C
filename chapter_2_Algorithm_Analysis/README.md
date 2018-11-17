@@ -383,4 +383,29 @@ If M > N, then M mod N < M/2.
 
 这时我们可以知道 remainder 第一次至多为 m 的一半, 第二次至多为 n 的一半，后面则以最少 1/2 的速度递减。所以可以表明该算法的复杂度为 O(LogN)。
 
+#### O(LogN) 算法之三: Exponentiation
+
+如何高效的计算指数幂？这便是该算法想要解决的。
+
+对 X 的 N 次方来说，我们可以区分为如下两种情况:
+* N 为 偶数, 令 N = 2k，则 X^(2k) = X^k * X^k = (X^2) ^ k
+* N 为 奇数，令 N = 2k + 1，则 X^(2k + 1) = X^k * X^k * x = (X^2) ^ k * x
+
+可以看到，我们最多只需要两次计算就可以将 X^N 的指数降为原来的一半。
+
+代码实现如下:
+
+```c
+int power(int x, int n) {
+    if (n == 0)
+        return 1;
+    if (n % 2)
+        return exp(x * x, n / 2) * x;
+    return exp(x * x, n / 2);
+}
+```
+
+## 2.4.4 Checking your analysis
+
+在作出对算法复杂度的分析后，如何确定你的分析是否正确呢，尤其是在实际情况下?
 
