@@ -496,4 +496,18 @@ number:   6400 percent: 0.607980 time: 3523889   T(N)/N: 550.607656   T(N)/N^2: 
 
 最后作者解释了为什么一般只考虑 O(f(N))，因为其他的算法复杂度分析往往太过复杂，这点我们在后面可以看到。
 
+## Exercise
 
+## 2.7 给出一个数 N，如何对前 N 个自然数生成一个随机排序？
+
+这里用到了经典的 Fisher-Yates shuffle algothrim，该算法可以在 O(N) 时间内随机生成一个有限序列的随机组合。
+
+```c
+void shuffle(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++)
+        // rand_int(i, n) produce value between [i, n)
+        swap(&arr[i], &arr[ rand_int(i, n) ]);
+}
+```
+
+书里面的实现每次 rand_int 都是取得 `rand_int(0, i)`, 跟 wiki 的实现有点差别，具体可见 [wiki](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
